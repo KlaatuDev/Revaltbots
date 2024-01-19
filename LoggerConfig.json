@@ -1,0 +1,61 @@
+
+
+{
+    "version": 1,
+    "formatters" : {
+        "default" : {
+            "format" : "%(asctime)s | %(levelname)s | %(funcName)s:%(lineno)d | %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S"
+        },
+        "simple":{
+            "format" : "%(asctime)s | %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S"
+        }
+    },
+    "handlers" : {
+        "main_logfile": {  
+            "formatter": "default",  
+            "level": "DEBUG",  
+            "class": "logging.handlers.RotatingFileHandler",  
+            "filename": "logs\\mainlogs\\errorlog.log", 
+            "maxBytes" : 5242880,
+            "backupCount": 10,
+            "encoding" : "utf-8"
+        },
+        "bot_logfile": {  
+            "formatter": "default",  
+            "level": "DEBUG",  
+            "class": "logging.handlers.RotatingFileHandler",  
+            "filename": "logs\\botlogs\\boterrorlog.log", 
+            "maxBytes" : 5242880,
+            "backupCount": 10,
+            "encoding" : "utf-8"
+        },
+        "db_logfile": {  
+            "formatter": "default",  
+            "level": "DEBUG",  
+            "class": "logging.handlers.RotatingFileHandler",  
+            "filename": "logs\\dblogs\\dberrorlog.log", 
+            "maxBytes" : 5242880,
+            "backupCount": 10,
+            "encoding" : "utf-8"
+        },
+        "console_output": {
+            "formatter": "simple",
+            "level": "DEBUG",
+            "class": "logging.StreamHandler"
+        }
+    },
+    "loggers" : {
+        "bot" : {
+            "handlers" : ["bot_logfile", "console_output"]
+        },
+        "db" : {
+            "handlers" : ["db_logfile", "console_output"]
+        }
+    },
+    "root" : {
+        "handlers" : ["console_output"],
+        "level" : "DEBUG"
+    }
+}
